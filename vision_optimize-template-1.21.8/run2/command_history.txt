@@ -1,7 +1,0 @@
-/tag Player688 add cero
-/tag Player711 add cero
-/tag Player496 add cero
-/tag Player60 add cero
-/vision_optimize player_vision_level_two
-/tag Player390 add yalisa
-/tag Player390 add vision

@@ -2,6 +2,8 @@
 **/.gradle/
 **/build/
 **/out/
+**/run*/
+**/.kotlin/
 
 # IDE metadata
 .idea/
