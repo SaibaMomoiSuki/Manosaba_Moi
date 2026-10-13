@@ -1,0 +1,4 @@
+./gradlew: line 110: uname: command not found
+
+xargs is not available
+

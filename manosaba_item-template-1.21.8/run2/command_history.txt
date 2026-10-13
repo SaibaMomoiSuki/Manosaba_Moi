@@ -1,0 +1,4 @@
+/gamemode survival
+/effect give Player772 manosaba_item:sleeping
+/gamemode survival
+/effect give Player75 manosaba_item:bleeding

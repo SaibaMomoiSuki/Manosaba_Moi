@@ -1,0 +1,174 @@
+plugins {
+	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
+	id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
+
+repositories {
+	// Add repositories to retrieve artifacts from in here.
+	// You should only use this when depending on other mods because
+	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
+	// for more information about repositories.
+}
+
+loom {
+	splitEnvironmentSourceSets()
+
+	mods {
+		"manosaba_item" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
+
+	runs {
+		// Second client instance — independent run directory so two can run simultaneously
+		client2 {
+			client()
+			configName = "Minecraft Client 2"
+			runDir = "run2"
+		}
+	}
+
+}
+
+fabricApi {
+	configureDataGeneration {
+		client = true
+	}
+}
+
+dependencies {
+	// To change the versions see the gradle.properties file
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings loom.officialMojangMappings()
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+	// Fabric API. This is technically optional, but you probably want it anyway.
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modImplementation files("mano_effect-1.1.0.jar")
+	modRuntimeOnly "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
+}
+
+processResources {
+	inputs.property "version", project.version
+	dependsOn "generateRevolverModels"
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	def rootAssets = [
+		"zuolun.png", "子弹.png", "弹匣 0 6.png", "弹匣 1 6.png", "弹匣 2 6.png",
+		"弹匣 3 6.png", "弹匣 4 6.png", "弹匣 5 6.png", "弹匣 6 6.png"
+	]
+	rootAssets.each { asset ->
+		from(asset) {
+			into "assets/manosaba_item/textures/item"
+			rename { name ->
+				switch (name) {
+					case "子弹.png": "revolver_bullet.png"; break
+					case "弹匣 0 6.png": "magazine_0_6.png"; break
+					case "弹匣 1 6.png": "magazine_1_6.png"; break
+					case "弹匣 2 6.png": "magazine_2_6.png"; break
+					case "弹匣 3 6.png": "magazine_3_6.png"; break
+					case "弹匣 4 6.png": "magazine_4_6.png"; break
+					case "弹匣 5 6.png": "magazine_5_6.png"; break
+					case "弹匣 6 6.png": "magazine_6_6.png"; break
+					default: name
+				}
+			}
+		}
+	}
+	["左轮.bbmodel", "子弹.bbmodel", "蛋壳.bbmodel"].each { model ->
+		from(model) {
+			into "assets/manosaba_item/models/bbmodel"
+			rename { name ->
+				switch (name) {
+					case "左轮.bbmodel": "revolver.bbmodel"; break
+					case "子弹.bbmodel": "revolver_bullet.bbmodel"; break
+					case "蛋壳.bbmodel": "shell_casing.bbmodel"; break
+					default: name
+				}
+			}
+		}
+	}
+	def nativeModels = [
+		"左轮.json": ["revolver.json", "manosaba_item:item/zuolun"],
+		"子弹.json": ["revolver_bullet.json", "manosaba_item:item/revolver_bullet"],
+		"蛋壳.json": ["shell_casing.json", "manosaba_item:item/shell_casing_3d"]
+	]
+	nativeModels.each { source, values ->
+		from(source) {
+			into "assets/manosaba_item/models/item"
+			rename { values[0] }
+			filter { line -> line.replace("block/texture", values[1]) }
+		}
+	}
+	def soundNames = [
+		"左轮开枪.mp3": "get_fire.ogg",
+		"左轮完成上弹.mp3": "reload_over1.ogg",
+		"左轮弹匣上弹完成.mp3": "reload_over2.ogg",
+		"左轮弹匣正在上弹.mp3": "reload_quick.ogg",
+		"上一发子弹.mp3": "reload_lower.ogg",
+		"左轮没子弹1.mp3": "needreload1.ogg",
+		"左轮没子弹2.mp3": "needreload2.ogg",
+		"左轮没子弹3.mp3": "needreload3.ogg"
+	]
+	soundNames.each { source, target ->
+		from("sounds/$target") {
+			into "assets/manosaba_item/sounds"
+		}
+	}
+
+	filesMatching("fabric.mod.json") {
+		expand "version": inputs.properties.version
+	}
+}
+
+tasks.register("generateRevolverModels", Exec) {
+	commandLine "node", "tools/generate_revolver_models.js"
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 21
+}
+
+java {
+	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+	// if it is present.
+	// If you remove this line, sources will not be generated.
+	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+}
+
+jar {
+	inputs.property "archivesName", project.base.archivesName
+
+	from("LICENSE") {
+		rename { "${it}_${inputs.properties.archivesName}"}
+	}
+}
+
+// configure the maven publication
+publishing {
+	publications {
+		create("mavenJava", MavenPublication) {
+			artifactId = project.archives_base_name
+			from components.java
+		}
+	}
+
+	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+	repositories {
+		// Add repositories to publish to here.
+		// Notice: This block does NOT have the same function as the block in the top level.
+		// The repositories here will be used for publishing your artifact, not for
+		// retrieving dependencies.
+	}
+}

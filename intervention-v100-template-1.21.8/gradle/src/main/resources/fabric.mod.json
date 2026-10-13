@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "id": "intervention",
+    "version": "${version}",
+    "name": "Intervention Mod",
+    "description": "介入过去 —— 魔法少女的因循村自设",
+    "authors": ["Intervention Team"],
+    "contact": {},
+    "license": "MIT",
+    "icon": "assets/intervention/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "com.intervention.Main"
+        ],
+        "client": [
+            "com.intervention.Main$ClientInit"
+        ]
+    },
+    "depends": {
+        "fabricloader": ">=${loader_version}",
+        "minecraft": "~${minecraft_version}",
+        "java": ">=21",
+        "fabric-api": "*"
+    },
+    "suggests": {}
+}

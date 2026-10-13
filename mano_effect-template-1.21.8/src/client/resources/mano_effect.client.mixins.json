@@ -1,0 +1,23 @@
+{
+    "required": true,
+    "package": "com.example.mixin.client",
+    "compatibilityLevel": "JAVA_21",
+    "client": [
+        "CameraAccessor",
+        "CameraShakeMixin",
+        "ClientHideParticlesMixin",
+        "ClientInputAccessor",
+        "GameRendererAccessor",
+        "GameRendererMixin",
+        "GuiEffectOverlayMixin",
+        "InjuryJumpHitMixin",
+        "LocalPlayerHitEffectMixin",
+        "LocalPlayerInputMixin",
+        "MouseHandlerMixin",
+        "OptionsMixin",
+        "SoundEngineMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

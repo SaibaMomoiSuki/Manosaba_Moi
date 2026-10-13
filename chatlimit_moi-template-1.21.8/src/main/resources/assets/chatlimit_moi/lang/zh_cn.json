@@ -1,0 +1,8 @@
+{
+  "key.category.chatlimit_moi": "ChatLimit Moi",
+  "key.chatlimit_moi.settings": "打开设置界面 (KP_6)",
+  "key.chatlimit_moi.toggle": "切换说话模式 (V)",
+  "chatlimit.volume.quiet": "小声",
+  "chatlimit.volume.normal": "正常",
+  "chatlimit.volume.shout": "大喊"
+}

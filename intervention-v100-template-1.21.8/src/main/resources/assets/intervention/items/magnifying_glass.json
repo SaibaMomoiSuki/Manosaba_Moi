@@ -1,0 +1,31 @@
+{
+    "model": {
+        "type": "minecraft:select",
+        "cases": [
+            {
+                "model": {
+                    "type": "minecraft:model",
+                    "model": "intervention:item/magnifying_glass"
+                },
+                "when": [
+                    "gui",
+                    "ground",
+                    "fixed"
+                ]
+            }
+        ],
+        "fallback": {
+            "type": "minecraft:condition",
+            "on_false": {
+                "type": "minecraft:model",
+                "model": "intervention:item/magnifying_glass"
+            },
+            "on_true": {
+                "type": "minecraft:model",
+                "model": "intervention:item/magnifying_glass_in_hand"
+            },
+            "property": "minecraft:using_item"
+        },
+        "property": "minecraft:display_context"
+    }
+}

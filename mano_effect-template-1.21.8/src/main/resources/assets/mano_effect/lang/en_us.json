@@ -1,0 +1,12 @@
+{
+    "effect.mano_effect.dizziness": "Dizziness",
+    "effect.mano_effect.radiation": "Radiation",
+    "effect.mano_effect.radiation_boost": "Radiation Hyperactivity",
+    "effect.mano_effect.dislocated_bone": "Dislocated Bone",
+    "effect.mano_effect.fracture": "Fracture",
+    "effect.mano_effect.twisted_ankle": "Twisted Ankle",
+    "effect.mano_effect.splinted": "Splinted",
+    "effect.mano_effect.manosaba_seriously_injured": "Seriously Injured",
+    "item.mano_effect.splint": "Improvised Splint",
+    "subtitles.mano_effect.tinnitus": "Ringing ears"
+}

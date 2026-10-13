@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "manosaba_item:jian",
+    "manosaba_item:golden_sword",
+    "#manosaba_item:spear_shafts",
+    "manosaba_item:nanoka_hairband"
+  ],
+  "result": {
+    "count": 1,
+    "id": "manosaba_item:jian_yi_chang_mao"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "manosaba_item:empty_glass_bottle"
+  ],
+  "result": {
+    "id": "manosaba_item:broken_bottle",
+    "count": 1
+  }
+}

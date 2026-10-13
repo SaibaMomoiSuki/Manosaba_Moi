@@ -1,0 +1,23 @@
+{
+  "heartbeat": {
+    "subtitle": "subtitles.mano_effect.heartbeat",
+    "sounds": [
+      "minecraft:mob/warden/heartbeat_1",
+      "minecraft:mob/warden/heartbeat_2",
+      "minecraft:mob/warden/heartbeat_3",
+      "minecraft:mob/warden/heartbeat_4"
+    ]
+  },
+  "tinnitus_1": {
+    "subtitle": "subtitles.mano_effect.tinnitus",
+    "sounds": [
+      "mano_effect:tinnitus_1"
+    ]
+  },
+  "tinnitus_2": {
+    "subtitle": "subtitles.mano_effect.tinnitus",
+    "sounds": [
+      "mano_effect:tinnitus_2"
+    ]
+  }
+}

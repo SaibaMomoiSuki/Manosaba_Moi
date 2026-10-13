@@ -1,0 +1,54 @@
+{
+	"schemaVersion": 1,
+	"id": "vision_optimize",
+	"version": "${version}",
+	"name": "vision_optimize",
+	"description": "Vision Optimize - Block and Item vision mod",
+	"authors": [
+		"Momoi"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "Proprietary - Internal Use Only",
+	"icon": "assets/vision_optimize/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			{
+				"value": "com.example.vision_optimize.Vision_optimize",
+				"adapter": "kotlin"
+			}
+		],
+		"client": [
+			{
+				"value": "com.example.vision_optimize.Vision_optimizeClient",
+				"adapter": "kotlin"
+			}
+		],
+		"fabric-datagen": [
+			{
+				"value": "com.example.vision_optimize.Vision_optimizeDataGenerator",
+				"adapter": "kotlin"
+			}
+		]
+	},
+	"mixins": [
+		"vision_optimize.mixins.json",
+		{
+			"config": "vision_optimize.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.13",
+		"minecraft": "~1.21.8",
+		"java": ">=21",
+		"fabric-api": "*",
+		"fabric-language-kotlin": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"required": true,
+	"package": "com.example.vision_optimize.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"ServerPlayerMixin",
+		"LivingEntityMixin",
+		"ItemStackMixin",
+		"InventoryMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}

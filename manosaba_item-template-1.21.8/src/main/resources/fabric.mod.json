@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "manosaba_item",
+	"version": "${version}",
+	"name": "Manosaba_Item",
+	"description": "Adds Manosaba-themed items, effects, interactions, and a writable sketchbook.",
+	"authors": [
+		"Manosaba Item Team"
+	],
+	"license": "Proprietary - Internal Use Only",
+	"icon": "assets/manosaba_item/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			{
+				"value": "com.example.Manosaba_Item",
+				"adapter": "default"
+			}
+		],
+		"client": [
+			"com.example.Manosaba_ItemClient"
+		],
+		"fabric-datagen": [
+			"com.example.Manosaba_ItemDataGenerator"
+		]
+	},
+	"mixins": [
+		"manosaba_item.mixins.json",
+		{
+			"config": "manosaba_item.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.13",
+		"minecraft": "~1.21.8",
+		"java": ">=21",
+		"fabric-api": ">=0.136.1",
+		"mano_effect": ">=1.1.0"
+	}
+}

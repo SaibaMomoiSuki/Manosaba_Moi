@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp \"C:/Users/d3567/Downloads/intervention-v100-template-1.21.8/gradle/src/介入过去.png\" \"C:/Users/d3567/Downloads/intervention-v100-template-1.21.8/gradle/src/main/resources/assets/intervention/textures/item/get_pass.png\")",
+      "Bash(cp \"C:/Users/d3567/Downloads/intervention-v100-template-1.21.8/gradle/src/雪莉放大镜.png\" \"C:/Users/d3567/Downloads/intervention-v100-template-1.21.8/gradle/src/main/resources/assets/intervention/textures/item/magnifying_glass.png\")",
+      "Bash(jar tf *)",
+      "Bash(unzip *)",
+      "Bash(./gradlew clean *)",
+      "Bash(java -version)",
+      "Read(//c/Program Files/Java/**)",
+      "Read(//c/Program Files/**)",
+      "Bash(JAVA_HOME=\"C:/Program Files/Java/jdk-21.0.11\" ./gradlew clean build)",
+      "Bash(JAVA_HOME=\"C:/Program Files/Java/jdk-21.0.11\" ./gradlew build)",
+      "Bash(xargs grep -l \"ZOOM_FOV\\\\|SpyglassItem\")",
+      "Bash(xargs grep -l \"ArmPose.SPYGLASS\\\\|SPYGLASS.*ArmPose\")",
+      "Bash(./gradlew build *)",
+      "Bash(jar -tf \".gradle\\\\loom-cache\\\\minecraftMaven\\\\net\\\\minecraft\\\\minecraft-common-6790506c70\\\\1.21.8-loom.mappings.1_21_8.layered+hash.2198-v2\\\\minecraft-common-6790506c70-1.21.8-loom.mappings.1_21_8.layered+hash.2198-v2.jar\")",
+      "Bash(javap -classpath \".gradle/loom-cache/minecraftMaven/net/minecraft/minecraft-common-6790506c70/1.21.8-loom.mappings.1_21_8.layered+hash.2198-v2/minecraft-common-6790506c70-1.21.8-loom.mappings.1_21_8.layered+hash.2198-v2.jar\" net.minecraft.client.player.AbstractClientPlayer)",
+      "Bash(python3 *)",
+      "mcp__ide__getDiagnostics"
+    ]
+  }
+}

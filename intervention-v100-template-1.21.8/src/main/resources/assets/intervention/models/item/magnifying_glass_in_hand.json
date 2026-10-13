@@ -1,0 +1,16 @@
+{
+    "parent": "minecraft:item/generated",
+    "textures": {
+        "layer0": "intervention:item/magnifying_glass"
+    },
+    "display": {
+        "firstperson_righthand": {
+            "translation": [-3, -3, -6],
+            "scale": [1.2, 1.2, 1]
+        },
+        "firstperson_lefthand": {
+            "translation": [3, -3, -6],
+            "scale": [1.2, 1.2, 1]
+        }
+    }
+}

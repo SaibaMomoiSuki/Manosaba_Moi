@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "manosaba_item:blood_golden_sword",
+    "manosaba_item:dead_bodies_lay_everywhere",
+    "manosaba_item:diamond_sword",
+    "manosaba_item:golden_hoe",
+    "manosaba_item:golden_sword",
+    "manosaba_item:iron_hoe",
+    "manosaba_item:jian_yi_chang_mao",
+    "manosaba_item:knife",
+    "manosaba_item:netherite_sword",
+    "manosaba_item:wooden_sword"
+  ]
+}

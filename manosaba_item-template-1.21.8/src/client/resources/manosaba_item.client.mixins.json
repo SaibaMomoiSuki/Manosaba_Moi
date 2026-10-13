@@ -1,0 +1,22 @@
+{
+	"required": true,
+	"package": "com.example.mixin.client",
+	"compatibilityLevel": "JAVA_21",
+	"client": [
+		"ExampleClientMixin",
+		"BlackoutMixin",
+		"FreezeInputMixin",
+		"MouseLockMixin",
+		"BottleStruggleHudMixin",
+		"RevolverHudMixin",
+		"BottleStruggleFovMixin",
+		"BottleStruggleMouseMixin",
+		"SketchbookSlotLockMixin",
+		"SketchbookArtworkMixin",
+		"SketchbookArtworkResolverMixin",
+		"SketchbookArtworkLayerMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

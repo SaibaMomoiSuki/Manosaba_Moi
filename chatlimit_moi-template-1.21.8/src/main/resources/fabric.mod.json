@@ -1,0 +1,49 @@
+{
+	"schemaVersion": 1,
+	"id": "chatlimit_moi",
+	"version": "${version}",
+	"name": "ChatLimit Moi",
+	"description": "Chat distance limit mod using raycasting and block penetration. Restricts chat audibility based on distance and blocks between players.",
+	"authors": ["Moi"],
+	"contact": {
+		"homepage": "",
+		"sources": ""
+	},
+	"license": "Proprietary - Internal Use Only",
+	"icon": "assets/chatlimit_moi/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			{
+				"value": "com.example.ChatLimit_Moi",
+				"adapter": "kotlin"
+			}
+		],
+		"client": [
+			{
+				"value": "com.example.ChatLimit_MoiClient",
+				"adapter": "kotlin"
+			}
+		],
+		"fabric-datagen": [
+			{
+				"value": "com.example.ChatLimit_MoiDataGenerator",
+				"adapter": "kotlin"
+			}
+		]
+	},
+	"mixins": [
+		"chatlimit_moi.mixins.json",
+		{
+			"config": "chatlimit_moi.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.13",
+		"minecraft": "~1.21.8",
+		"java": ">=21",
+		"fabric-api": "*",
+		"fabric-language-kotlin": "*"
+	}
+}

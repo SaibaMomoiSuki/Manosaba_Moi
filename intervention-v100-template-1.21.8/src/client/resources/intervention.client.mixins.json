@@ -1,0 +1,12 @@
+{
+    "required": true,
+    "package": "com.intervention.mixin",
+    "compatibilityLevel": "JAVA_21",
+    "client": [
+        "MagnifyingGlassMixin",
+        "MagnifyingGlassArmPoseMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

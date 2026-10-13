@@ -1,0 +1,10 @@
+{
+  "get_fire": {"sounds": ["manosaba_item:get_fire"]},
+  "reload_over1": {"sounds": ["manosaba_item:reload_over1"]},
+  "reload_over2": {"sounds": ["manosaba_item:reload_over2"]},
+  "reload_quick": {"sounds": ["manosaba_item:reload_quick"]},
+  "reload_lower": {"sounds": ["manosaba_item:reload_lower"]},
+  "needreload1": {"sounds": ["manosaba_item:needreload1"]},
+  "needreload2": {"sounds": ["manosaba_item:needreload2"]},
+  "needreload3": {"sounds": ["manosaba_item:needreload3"]}
+}

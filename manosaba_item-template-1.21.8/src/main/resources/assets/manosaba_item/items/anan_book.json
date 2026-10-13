@@ -1,0 +1,26 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "property": "minecraft:custom_model_data",
+    "cases": [
+      {
+        "when": ["0"],
+        "model": {
+          "type": "minecraft:model",
+          "model": "manosaba_item:item/anan_book_closed"
+        }
+      },
+      {
+        "when": ["1"],
+        "model": {
+          "type": "minecraft:model",
+          "model": "manosaba_item:item/anan_book_open"
+        }
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "manosaba_item:item/anan_book_closed"
+    }
+  }
+}

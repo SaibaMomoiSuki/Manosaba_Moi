@@ -1,0 +1,14 @@
+# Gradle and build output
+**/.gradle/
+**/build/
+**/out/
+
+# IDE metadata
+.idea/
+*.iml
+.vscode/
+
+# Local machine files
+*.class
+hs_err_pid*
+replay_pid*

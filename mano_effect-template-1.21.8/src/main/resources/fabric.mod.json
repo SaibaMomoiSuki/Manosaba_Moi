@@ -1,0 +1,54 @@
+{
+	"schemaVersion": 1,
+	"id": "mano_effect",
+	"version": "${version}",
+	"name": "mano_effect",
+	"description": "Adds the Dizziness (头部眩晕) status effect - blurs vision and reverses movement keys randomly",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "Proprietary - Internal Use Only",
+	"icon": "assets/mano_effect/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			{
+				"value": "com.example.Mano_effect",
+				"adapter": "kotlin"
+			}
+		],
+		"client": [
+			{
+				"value": "com.example.Mano_effectClient",
+				"adapter": "kotlin"
+			}
+		],
+		"fabric-datagen": [
+			{
+				"value": "com.example.Mano_effectDataGenerator",
+				"adapter": "kotlin"
+			}
+		]
+	},
+	"mixins": [
+		"mano_effect.mixins.json",
+		{
+			"config": "mano_effect.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.13",
+		"minecraft": "~1.21.8",
+		"java": ">=21",
+		"fabric-api": "*",
+		"fabric-language-kotlin": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

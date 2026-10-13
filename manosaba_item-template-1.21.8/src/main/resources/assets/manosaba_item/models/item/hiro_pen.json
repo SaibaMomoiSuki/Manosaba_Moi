@@ -1,0 +1,17 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "manosaba_item:item/hiro_pen"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "scale": [0.45, 0.45, 0.45]
+    },
+    "firstperson_righthand": {
+      "scale": [0.55, 0.55, 0.55]
+    },
+    "gui": {
+      "scale": [0.8, 0.8, 0.8]
+    }
+  }
+}

@@ -1,0 +1,172 @@
+plugins {
+	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
+	id 'maven-publish'
+	id "org.jetbrains.kotlin.jvm" version "2.4.0"
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
+
+repositories {
+	// Vosk speech recognition is published on Maven Central.
+	mavenCentral()
+}
+
+loom {
+	splitEnvironmentSourceSets()
+
+	mods {
+		"chatlimit_moi" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
+
+	runs {
+		client2 {
+			client()
+			configName = "Minecraft Client 2"
+			runDir = "run2"
+		}
+	}
+
+}
+
+fabricApi {
+	configureDataGeneration {
+		client = true
+	}
+}
+
+dependencies {
+	// To change the versions see the gradle.properties file
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings loom.officialMojangMappings()
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+	// Fabric API. This is technically optional, but you probably want it anyway.
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
+
+	// Offline speech-to-text (Vosk). The speech model itself is still supplied
+	// at runtime by the user (see VoiceInputManager); the Java binding and its
+	// native libraries are bundled so voice input works outside the dev env.
+	modImplementation "com.alphacephei:vosk:0.3.45"
+	include "com.alphacephei:vosk:0.3.45"
+
+	// Hanzi -> pinyin. Used to repair the homophone mistakes the speech model
+	// makes on names and game-specific terms (see SpeechPhraseMap).
+	implementation "com.belerweb:pinyin4j:2.5.1"
+	include "com.belerweb:pinyin4j:2.5.1"
+}
+
+processResources {
+	inputs.property "version", project.version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": inputs.properties.version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 21
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+	kotlinOptions {
+		jvmTarget = 21
+	}
+}
+
+java {
+	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+	// if it is present.
+	// If you remove this line, sources will not be generated.
+	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+}
+
+jar {
+	inputs.property "archivesName", project.base.archivesName
+
+	from("LICENSE") {
+		rename { "${it}_${inputs.properties.archivesName}"}
+	}
+}
+
+// ---------------------------------------------------------------------------
+// build2 — the same mod, with the Vosk speech models baked in.
+//
+// `build` stays lean (~26 MB, no models); `build2` additionally embeds every
+// model found in bundledModelsDir, producing a jar the player can drop in and
+// use offline with no download at all. That jar is ~1.2 GB, so this is a
+// separate task and never part of `build`.
+//
+// The models are placed under chatlimit_moi-models/ rather than assets/ or
+// data/ on purpose: anything under those two is indexed by Minecraft's resource
+// pack system, which would choke on two gigabytes of Kaldi binaries.
+// ModelInstaller extracts them to the config dir on demand.
+// ---------------------------------------------------------------------------
+def bundledModelsDir = file(project.findProperty("bundledModelsDir")
+		?: "run/config/chatlimit_moi/vosk-model")
+
+tasks.register("build2", Zip) {
+	group = "build"
+	description = "Builds the mod jar with the Vosk speech models bundled in (large)."
+	dependsOn tasks.remapJar
+
+	// A plain Zip, not a Jar: the remapped jar already has the manifest, the
+	// Fabric metadata and the nested JIJ libraries, and re-running the Jar task
+	// over it would regenerate the manifest and drop things.
+	archiveBaseName = project.archives_base_name
+	archiveVersion = project.version
+	archiveClassifier = "bundled"
+	archiveExtension = "jar"
+	destinationDirectory = layout.buildDirectory.dir("libs")
+	zip64 = true
+
+	from(zipTree(tasks.remapJar.archiveFile))
+	from(bundledModelsDir) {
+		into("chatlimit_moi-models")
+	}
+
+	doFirst {
+		if (!bundledModelsDir.isDirectory()) {
+			throw new GradleException(
+					"bundledModelsDir not found: ${bundledModelsDir}\n" +
+					"Extract the Vosk models there, or point at them with " +
+					"-PbundledModelsDir=<path>.")
+		}
+		def models = bundledModelsDir.listFiles({ f -> f.isDirectory() } as FileFilter)
+		if (models == null || models.length == 0) {
+			throw new GradleException("No model folders inside ${bundledModelsDir}")
+		}
+		logger.lifecycle("Bundling ${models.length} speech model(s) from ${bundledModelsDir}:")
+		models.each { logger.lifecycle("  - ${it.name}") }
+		logger.lifecycle("This produces a very large jar and takes a while.")
+	}
+}
+
+// configure the maven publication
+publishing {
+	publications {
+		create("mavenJava", MavenPublication) {
+			artifactId = project.archives_base_name
+			from components.java
+		}
+	}
+
+	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+	repositories {
+		// Add repositories to publish to here.
+		// Notice: This block does NOT have the same function as the block in the top level.
+		// The repositories here will be used for publishing your artifact, not for
+		// retrieving dependencies.
+	}
+}

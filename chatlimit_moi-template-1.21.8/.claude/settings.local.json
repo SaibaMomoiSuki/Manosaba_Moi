@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./gradlew build *)",
+      "Bash(./gradlew compileClientKotlin)",
+      "Bash(java -version)",
+      "Bash(/usr/lib/jvm/*/bin/java -version)",
+      "Read(//usr/lib/**)",
+      "Bash(where java *)",
+      "Read(//c/Program Files/Java/**)",
+      "Read(//c/Program Files/BellSoft/**)",
+      "Read(//c/Program Files/Common Files/Oracle/Java/**)",
+      "Bash(\"C:/Program Files/Java/latest/bin/java\" -version)",
+      "Bash(\"C:/Program Files/Java/jdk-21.0.11/bin/java\" -version)",
+      "Bash(JAVA_HOME=\"C:/Program Files/Java/jdk-21.0.11\" ./gradlew compileClientKotlin)",
+      "Bash(JAVA_HOME=\"C:/Program Files/Java/jdk-21.0.11\" ./gradlew build)",
+      "Bash(awk '/ChatLimit_Moi initialized successfully/,/Can.t getDevice/' run/logs/latest.log)",
+      "Bash(JAVA_HOME=\"C:/Program Files/Java/jdk-21.0.11\" ./gradlew runClient)",
+      "WebFetch(domain:maven.fabricmc.net)",
+      "WebSearch",
+      "Bash(curl -s \"https://maven.fabricmc.net/net/fabricmc/fabric-api/fabric-api/maven-metadata.xml\")",
+      "Bash(curl -s \"https://maven.fabricmc.net/net/fabricmc/fabric-loader/maven-metadata.xml\")",
+      "Bash(cd /tmp)",
+      "Bash(unzip -l \"C:/Users/d3567/.gradle/caches/modules-2/files-2.1/com.ibm.icu/icu4j/76.1/215f3a8e936d4069344bd75f2b1368fd58112894/icu4j-76.1.jar\")",
+      "Bash(timeout 25 curl -sI https://repo1.maven.org/maven2/com/belerweb/pinyin4j/2.5.1/pinyin4j-2.5.1.pom)",
+      "Bash(echo \"EXIT:$?\")"
+    ]
+  }
+}

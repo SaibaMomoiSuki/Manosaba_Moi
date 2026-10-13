@@ -1,0 +1,30 @@
+{
+    "schemaVersion": 1,
+    "id": "intervention",
+    "version": "${version}",
+    "name": "Intervention Mod",
+    "description": "介入过去模组 —— 可以回溯时间与复活玩家的魔法物品",
+    "authors": ["Intervention Team"],
+    "contact": {},
+    "license": "Proprietary - Internal Use Only",
+    "icon": "assets/intervention/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "com.intervention.Main"
+        ],
+        "client": [
+            "com.intervention.InterventionClient"
+        ]
+    },
+    "mixins": [
+        "intervention.client.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=${loader_version}",
+        "minecraft": "~${minecraft_version}",
+        "java": ">=21",
+        "fabric-api": "*"
+    },
+    "suggests": {}
+}

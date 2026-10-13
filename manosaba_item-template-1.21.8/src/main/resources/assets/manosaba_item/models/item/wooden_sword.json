@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "manosaba_item:item/wooden_sword"
+  },
+  "display": {
+    "gui": {
+      "rotation": [0, 180, 0]
+    },
+    "firstperson_righthand": {
+      "rotation": [0, 180, 0]
+    }
+  }
+}

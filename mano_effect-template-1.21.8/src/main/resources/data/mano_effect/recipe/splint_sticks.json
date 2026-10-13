@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:stick",
+    "minecraft:stick",
+    "minecraft:paper",
+    "minecraft:paper"
+  ],
+  "result": {
+    "id": "mano_effect:splint",
+    "count": 1
+  }
+}

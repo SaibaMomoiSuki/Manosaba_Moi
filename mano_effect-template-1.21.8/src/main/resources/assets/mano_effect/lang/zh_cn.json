@@ -1,0 +1,12 @@
+{
+    "effect.mano_effect.dizziness": "头部眩晕",
+    "effect.mano_effect.radiation": "辐射",
+    "effect.mano_effect.radiation_boost": "辐射亢奋",
+    "effect.mano_effect.dislocated_bone": "脱骨折",
+    "effect.mano_effect.fracture": "骨折",
+    "effect.mano_effect.twisted_ankle": "崴脚",
+    "effect.mano_effect.splinted": "固定器",
+    "effect.mano_effect.manosaba_seriously_injured": "重创",
+    "item.mano_effect.splint": "简易固定器",
+    "subtitles.mano_effect.tinnitus": "耳鸣"
+}

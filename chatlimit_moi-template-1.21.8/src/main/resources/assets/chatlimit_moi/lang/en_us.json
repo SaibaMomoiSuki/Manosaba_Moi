@@ -1,0 +1,8 @@
+{
+  "key.category.chatlimit_moi": "ChatLimit Moi",
+  "key.chatlimit_moi.settings": "Open Settings (KP_6)",
+  "key.chatlimit_moi.toggle": "Cycle Speaking Mode (V)",
+  "chatlimit.volume.quiet": "Whisper",
+  "chatlimit.volume.normal": "Normal",
+  "chatlimit.volume.shout": "Shout"
+}
